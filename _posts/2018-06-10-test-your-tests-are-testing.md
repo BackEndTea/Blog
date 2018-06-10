@@ -248,6 +248,8 @@ It can be enforced, for example on CI, with the `--min-covered-msi` flag.
 
 ## Usage
 
+**Installation**
+
 You can install infection in a few ways:
 
 * Through Composer as a dev dependency: `composer require infection/infection --dev`
@@ -255,13 +257,15 @@ You can install infection in a few ways:
 * Or as a phar: 
 
 ```bash
-$ wget https://github.com/infection/infection/releases/download/0.8.0/infection.phar
-$ wget https://github.com/infection/infection/releases/download/0.8.0/infection.phar.pubkey
+$ wget https://github.com/infection/infection/releases/download/0.8.2/infection.phar
+$ wget https://github.com/infection/infection/releases/download/0.8.2/infection.phar.pubkey
 
 $ chmod +x infection.phar
 ```
 
 If you want to update your phar you can do so by running `$ ./infection.phar self-update`.
+
+**Local usage**
 
 Running infection can take a lot of time if you have a big project or if your tests are slow. One way to speed it up is to run it with the following option:
 ``` --threads=`nproc` ```. This will run the tests against mutations multithreaded, with as much threads as useful. **Note:** This should only be done
