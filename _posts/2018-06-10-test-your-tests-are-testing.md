@@ -268,7 +268,7 @@ If you want to update your phar you can do so by running `$ ./infection.phar sel
 **Local usage**
 
 Running infection can take a lot of time if you have a big project or if your tests are slow. One way to speed it up is to run it with the following option:
-``` --threads=`nproc` ```. This will run the tests against mutations multithreaded, with as much threads as useful. **Note:** This should only be done
+``` --threads=`nproc` ```. This will run the tests against mutations multi threaded, with as much threads as useful. **Note:** This should only be done
 if your tests can be ran parallel. If they use a database or the file system this can lead to a lot of mutations being killed that are not detected by your tests.
 
 
@@ -277,7 +277,7 @@ if your tests can be ran parallel. If they use a database or the file system thi
 If you run infection during CI, its recommended to run it with the `--min-msi` and/or `--min-covered-msi`. This will force you to write better tests and keep your
 MSI and Covered Code MSI as a stable rate.
 
-If you are already generation coverage on CI, you can hand infeciton that coverage, so it doesnt have to generate it itself.
+If you are already generation coverage on CI, you can hand infection that coverage, so it doesn't have to generate it itself.
 Infection needs xml and junit coverage to run
 
 ```bash
@@ -294,7 +294,7 @@ INFECTION_FILTER=$(git diff ${GIT_PREVIOUS_SUCCESSFUL_COMMIT:-origin/master} $GI
 $ vendor/bin/infection --threads=4 --min-msi=70 --only-covered --filter="${INFECTION_FILTER}" --ignore-msi-with-no-mutations
 ```
 
-This will only run infection against changed files that differ from the last successfull commit on this branch, or master if there is none, in the `src` folder.
+This will only run infection against changed files that differ from the last successful commit on this branch, or master if there is none, in the `src` folder.
 The `--ignore-msi-with-no-mutations` flag causes us to not error on min msi when we have 0 mutations.
 
 
