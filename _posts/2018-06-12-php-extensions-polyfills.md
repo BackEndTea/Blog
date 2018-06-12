@@ -24,11 +24,11 @@ You may have seen something like this in a `composer.json`:
 
 This means the project needs the `intl` php extension in order to work. If you don't have it installed, composer will not install the packages, and 
 tell you it is missing an extension it needs to function.
-Generally, installing a package is as easy as `sudo apt-get install php-intl`, and restart your web server if needed. A lot of CD environments will 
+Generally, installing a package is as easy as `sudo apt-get install php-intl`, and restart your web server if needed. A lot of deploy/build environments will 
 automatically install the needed extensions, so no need to worry about that.
 
-Even running composer already requires the simple xml extension, so its okay to depend on an extension to make your application work.
-But, many packages require extensions without making it explicit like this, which is a shame.
+Even running composer already requires the simple-xml extension, so its not like you can run php without any extensions.
+A lot of packages require extensions without making it explicit like this, which is a shame.
 Getting an error when running `composer install` that mentions an extension being needed is a lot more informative than seeing the following error
 when running your program.
 ```
@@ -37,27 +37,28 @@ Fatal error: Uncaught Error: Call to undefined function Composer\XdebugHandler\c
 
 A closer look at the [ctype documentation](https://secure.php.net/manual/en/ctype.installation.php) reveals that from php 4.2 and onward, it is enabled by default.
 Meaning you would have to pass the `--disable-ctype` flag when compiling php to disable it. However, certain php distributions don't include it, as they did in fact
-pass that flag while compiling, some examples are FreeBSD and Alpine. So relying on the fact that it is enabled by 'default' is not really an option.
+pass that flag while compiling, some examples being FreeBSD and Alpine. So relying on the fact that it is enabled by 'default' is not really an option.
 
 There are [a lot](https://secure.php.net/manual/en/extensions.membership.php) of extensions available. Some are part of the 'core' meaning you can't disable them,
-others are 'default', meaning a 'normal' php installation *should* have it. Some need to be installed by hand, and some even need a whole lot of configuration.
+others are 'default', meaning a 'normal' php installation *should* have it, but as mentioned early, we can't rely on that.
+Some need to be installed by hand, and some even need a whole lot of configuration.
 So before you start requiring extensions left and right, it may be a good idea to check how much strain it will put on your users.
 
 ## Polyfills
 
-A way to avoid a direct dependency on (some) extensions is using a [polyfill](https://github.com/symfony/polyfill). 
+A way to avoid a direct dependency on (some) extensions is using a [polyfill](https://github.com/symfony/polyfill).
 Symfony provides quite a few, but there are others as well. So instead of requiring the ctype extension, we can require its polyfill.
 Composer can install that itself, so no error for the user, and if the user doesn't have the extension available it will be 'suggested' by composer.
-Of course, this suggestion is buried by dozens of other suggestions that other packages make. 
+Of course, this suggestion is buried by dozens of other suggestions that other packages make.
 
-The only down side of using a polyfill is that it is generally slower. However, if you don't have control over your production server, these polyfills mean you can still use the functions they provide.
+The one down side of using a polyfill is that it is generally slower. However, if you don't have control over your production server, these polyfills mean you can still use the functionality they provide.
 
 ## And you
 
-So, what can you do with this information? 
+So, what can you do with this information?
 
 If you have an application for which performance is absolutely critical, consider checking what polyfills you are actually using, and what extensions are
-available on your production server. Even if you don't use `ctype` or `intl` or another extension directly, your dependencies may use them, so getting the 
+available on your production server. Even if you don't use `ctype` or `intl` or another extension directly, your dependencies may use them, so getting the
 'real' extension could give you a performance boost. This boost will be absolutely minimal, unless you use these functions a ton.
 
 If you maintain an (open source) package, take a closer look at your code base, 
