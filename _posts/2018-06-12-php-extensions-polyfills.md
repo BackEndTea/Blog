@@ -2,8 +2,8 @@
 layout: post
 title: PHP extensions, polyfills and you
 tags: extensions polyfills
+eye_catch: /assets/img/php-logo.png
 permalink: extension-polyfill
-
 ---
 
 A little while ago someone ran into an error with a dependency of a project i worked on.
