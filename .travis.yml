@@ -19,6 +19,6 @@ deploy:
   github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
   keep-history: true
   on:
-    branch: master
+    tags: true
   repo: BackEndTea/BackEndTea.github.io
   target_branch: master
