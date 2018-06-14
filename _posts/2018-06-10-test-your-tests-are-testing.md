@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Tests your tests are testing
-tags: tests mutation-testing infection
+title: Test your tests are testing
+tags: php tests mutation-testing infection
 eye_catch: /assets/img/infection-logo.png
 ---
 

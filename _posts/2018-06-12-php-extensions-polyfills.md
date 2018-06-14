@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PHP extensions, polyfills and you
-tags: extensions polyfills
+tags: php extensions polyfills
 eye_catch: /assets/img/php-logo.png
 permalink: extension-polyfill
 ---
