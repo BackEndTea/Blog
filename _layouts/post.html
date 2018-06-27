@@ -11,3 +11,18 @@ layout: default
         {% include article-footer.html page=page share=page.share %}
     </article>
 </div>
+
+<script>
+$(function() {
+    var today = new Date();
+    var postDate = new Date('{{ page.date | date:"%Y-%m-%d" }}');
+
+	var timeDiff = Math.abs(today.getTime() - postDate.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    if(diffDays >= 365) {
+        var content = '<div style="border: 2px solid black; background-color:#f05755;"><h3>This article is over one year old an may be out of date.</h2d></div>';
+        $(content).prependTo($('article section'));
+    }
+});
+</script>
