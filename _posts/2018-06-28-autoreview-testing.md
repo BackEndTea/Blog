@@ -134,7 +134,7 @@ and replace change those into a Fully Qualified Name(FQN) strings of our classes
     }
 },
 ```
-We the append the relative path, starting in the src folder, and replace our directory separators with a `\`, to turn it into its namespace.
+We then append the relative path, starting in the src folder, and replace our directory separators with a `\`, to turn it into its namespace.
 If the relative path is empty, its directly in the src folder, we do not add another `\` since its already after the vendor namespace, otherwise,
 we add a new `\`, and then finally we append the name of the file, without its suffix. Which should turn into our class name.
 
@@ -423,7 +423,7 @@ public function test_all_concrete_classes_have_tests(string $className)
 
     $this->assertTrue(class_exists($testClass),
         sprintf(
-            'Class "%s" doest not have a corresponding unit test "%s", please add one',
+            'Class "%s" doesn\'t not have a corresponding unit test "%s", please add one',
             $className,
             $testClass
         )
@@ -471,7 +471,7 @@ This will make sure you always have your technical debt in sights.
 ```php
 $this->assertTrue(class_exists($testClass),
      sprintf(
-        'Class "%s" doest not have a corresponding unit test "%s", please add one',
+        'Class "%s" doesn\'t not have a corresponding unit test "%s", please add one',
         $className,
         $testClass
     )
