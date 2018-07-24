@@ -45,3 +45,9 @@
         }
     }
 }
+
+header p img {
+    @media screen and (min-width: $mobile-width) {
+        max-width: 40%;
+    }
+}
