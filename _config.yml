@@ -45,6 +45,7 @@ permalink: pretty
 # Scripts.
 #
 google_analytics: UA-120550882-1
+disqus: backendtea
 
 #
 # Localizations.

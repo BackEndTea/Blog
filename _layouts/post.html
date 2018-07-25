@@ -12,6 +12,12 @@ layout: default
     </article>
 </div>
 
+{% if site.disqus %}
+<section class="comments">
+    {% include disqus.html %}
+</section>
+{% endif %}
+
 <script>
 $(function() {
     var today = new Date();
