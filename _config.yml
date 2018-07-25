@@ -72,7 +72,7 @@ paginate_path: page/:num
 # Social.
 #
 share_buttons:
-  twitter: false
+  twitter: true
   facebook: false # needs ogp.fb.app_id
   hatena: false
 ogp:
