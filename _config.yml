@@ -110,6 +110,7 @@ sass:
   style: :compressed # or :expanded
 
 exclude:
+  - .idea/
   - Gemfile
   - Gemfile.lock
   - LICENSE

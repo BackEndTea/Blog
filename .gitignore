@@ -1,5 +1,6 @@
 .DS_Store
 .idea/
+
 _site/
 .bundle/
 .sass-cache/
@@ -7,3 +8,4 @@ Gemfile.lock
 vendor/
 *.php
 *.swp
+.jekyll-metadata
