@@ -1,34 +1,27 @@
-$(function () {
-    // focus on search input with '/' key.
-    $("body").on("keyup", function (e) {
-        e.stopPropagation();
-        var slashKeys = [47, 111, 191];
-        if (slashKeys.some(function (value) { return e.keyCode == value })) {
-            $("#search").focus();
-        }
-    });
-
+(function () {
     // add `target="_blank"` into all outer links.
-    var host = document.location.host;
-    $("a[href]").each(function() {
+
+    document.querySelectorAll('a[href]').forEach(function(item) {
+        var host = document.location.host;
         var re = new RegExp(host, "g");
-        if ($(this).attr("href").match(/\/\//) && !$(this).attr("href").match(re)) {
-            $(this).attr("target", "_blank");
+        if (item.getAttribute('href').match(/\/\//) && !item.getAttribute('href').match(re)) {
+            item.setAttribute('target', '_blank');
         }
     });
 
-    // center and linkable all images.
-    var $images = $("article img:not(.emoji, .eye-catch)");
-    $images.closest("p").css("text-align", "center");
-    $images.each(function () {
-        var imgUrl = $(this).attr("src");
-        var $a = $("<a>").attr("href", imgUrl).attr("target", "_blank");
-        $(this).wrap($a);
+    // center all images.
+    document.querySelectorAll("article img").forEach(function(item) {
+        if(item.matches('.emoji, .eye-catch')) {
+            console.log(item);
+            return;
+        }
+        item.parentElement.setAttribute('style', 'text-align: center;')
     });
 
     // stick aside.
-    var topSpacing = $(".site-aside").css("padding-top").replace(/px/, "");
+    var style = window.getComputedStyle(document.getElementsByClassName('site-aside')[0]);
+    var topSpacing = style.getPropertyValue('padding-top');
     $(".site-aside .sticky").sticky({
         topSpacing: parseInt(topSpacing)
     });
-});
+})();
