@@ -1,4 +1,6 @@
 .site-aside {
+    position: sticky;
+    top: 50px;
     font-size: 0.95em;
     padding-top: $margin;
     padding-bottom: $margin;

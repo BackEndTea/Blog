@@ -10,7 +10,6 @@
         var iNode = document.createElement('i');
         iNode.setAttribute('class', 'fa fa-link');
         newNode.appendChild(iNode);
-        //var newNode = '<a href="#'+ id + '" class="header-link"><i class="fa fa-link"></i></a>';
         item.appendChild(newNode);
     });
 })();

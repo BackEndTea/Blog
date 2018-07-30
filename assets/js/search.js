@@ -1,4 +1,4 @@
-$(function () {
+(function () {
     var query = getQuery(["q", "t", "a", "d"]);
 
     var targets;
@@ -22,7 +22,7 @@ $(function () {
     if (query.key == "q") {
         $("#search").val(query.query).focus();
     }
-});
+})();
 
 function getQuery(keys)
 {
@@ -47,62 +47,57 @@ function getQuery(keys)
 
 function showPosts(words, targets)
 {
-    var getJson = function () {
+    return fetch(baseurl + "/search.json", {
+        headers: {
+            "Accept": "text/json"
+        },
+    }).then(function (response) {
+        return response.json();
 
-        var dfd = $.Deferred();
-        $.ajax({
-            url: baseurl + "/search.json",
-            dataType: "json",
-            timeout: 3000,  // 3 sec
-            success: function (posts) {
-                var matchedPosts = [];
-                posts.forEach(function (post) {
-
-                    // concatenate target fields as a string.
-                    var searchee = "";
-                    for (var i = 0; i < targets.length; i++) {
-                        var target = post[targets[i]];
-                        var targetString = "";
-                        if (target instanceof Array) {
-                            for (var j = 0; j < target.length; j++) {
-                                targetString += target[j];
-                            }
-                        } else if (typeof target == "object") {
-                            for (key in target) {
-                                targetString += target[key];
-                            }
-                        } else {
-                            targetString = target;
-                        }
-                        searchee += targetString;
+    }).then(function (posts) {
+        var matchedPosts = [];
+        posts.forEach(function (post) {
+            // concatenate target fields as a string.
+            var searchee = "";
+            for (var i = 0; i < targets.length; i++) {
+                var target = post[targets[i]];
+                var targetString = "";
+                if (target instanceof Array) {
+                    for (var j = 0; j < target.length; j++) {
+                        targetString += target[j];
                     }
-
-                    // matching.
-                    var matched = true;
-                    words.forEach(function (word) {
-                        var regex = new RegExp(word, 'i');
-                        if (searchee.match(regex) == null) {
-                            matched = false;
-                            return false;  // break;
-                        }
-                        return true;  // continue;
-                    });
-
-                    if (matched) {
-                        matchedPosts.push(post);
+                } else if (typeof target == "object") {
+                    for (var key in target) {
+                        targetString += target[key];
                     }
-                });
+                } else {
+                    targetString = target;
+                }
+                searchee += targetString;
+            }
 
-                dfd.resolve(matchedPosts);
+            // matching.
+            var matched = true;
+            words.forEach(function (word) {
+                var regex = new RegExp(word, 'i');
+                if (searchee.match(regex) == null) {
+                    matched = false;
+                    return false;  // break;
+                }
+                return true;  // continue;
+            });
+
+            if (matched) {
+                matchedPosts.push(post);
             }
         });
-
-        return dfd.promise();
-    };
-
-    getJson().then(function (matchedPosts) {
+        return matchedPosts;
+    }).then(function (matchedPosts) {
         matchedPosts.forEach(function (post) {
-            $("#search-results").find("#" + post.id).show();
+            console.log()
+            document.querySelectorAll("#search-results #" + post.id).forEach(function (currentPost) {
+                currentPost.setAttribute('style', '')
+            });
         });
     });
 }
