@@ -5,7 +5,7 @@ tags: editorconfig opinion
 permalink: add-an-editorconfig
 ---
 
-One of the hardest things to spot during a pr whitespace issues. Did someone use tabs instead of spaces, trailing whitespace etc.
+One of the hardest things to spot during a pr are whitespace issues. Did someone use tabs instead of spaces, trailing whitespace etc.
 So, why not make it easy on yourself and help any contributors by adding an `.editorconfig` file that automatcially fixes those things for you.
 <!--more-->
 
