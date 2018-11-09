@@ -4,7 +4,7 @@
 # url: http://localhost:4000
 # baseurl: ""
 url: #
-baseurl: # 
+baseurl: #
 title: BackEndTea
 description: PHP Developer
 avatar: /assets/img/me.jpg
@@ -27,7 +27,7 @@ icons:
   dribbble:
   flickr:
   instagram:
-  linkedin: # full URL
+  linkedin: https://www.linkedin.com/in/gert-de-pagter/
   pinterest:
   reddit:
   soundcloud:
@@ -76,7 +76,7 @@ share_buttons:
   facebook: false # needs ogp.fb.app_id
   hatena: false
 ogp:
-  image_url: 
+  image_url:
   fb:
     admin: # facebook admin id
     app_id: # facebook application id
